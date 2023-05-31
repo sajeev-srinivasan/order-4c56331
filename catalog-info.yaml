@@ -26,7 +26,7 @@ spec:
   consumesApis: 
     - "customer"
   dependsOn: 
-    - "orders-db"  
+    - "resource:orders-db"  
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
@@ -50,7 +50,7 @@ metadata:
   name: order-team
 spec:
   type: team
-  children: []
+  children: []  
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
