@@ -30,3 +30,25 @@ spec:
     message ExampleMessage {
       string example = 1;
     };
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: "customer"
+  description: "This API handles customers across all types."
+spec:
+  type: openapi
+  lifecycle: production
+  owner:  "order-team"
+  system: "order"
+  definition: |
+    syntax = "proto3";
+
+    service Exampler {
+      rpc Example (ExampleMessage) returns (ExampleMessage) {};
+    }
+
+    message ExampleMessage {
+      string example = 1;
+    };
+  
