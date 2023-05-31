@@ -6,7 +6,8 @@ metadata:
 spec:
   type: openapi
   lifecycle: production
-  owner:  "guest"
+  owner:  "order-team"
+  system: "order"
   definition:
     $text: https://github.com/platform-dx/order-4c56331/blob/main/open-api.yaml
 ---    
@@ -17,8 +18,8 @@ metadata:
 spec:
   type: grpc
   lifecycle: experimental
-  owner: "guest"
-  system: examples
+  system: "order"
+  owner: "order-team"
   definition: |
     syntax = "proto3";
 
