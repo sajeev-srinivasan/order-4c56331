@@ -1,0 +1,8 @@
+site_name: "order"
+site_description: "This website handles orders across all types."
+
+nav:
+  - Introduction: index.md
+
+plugins:
+  - techdocs-core

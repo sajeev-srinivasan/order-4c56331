@@ -1,0 +1,58 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: order-ingress
+spec:
+  rules:
+    - host: api-order-demobackstage1.empcbr.thoughtworks-labs.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: order
+                port: 
+                  number: 80
+  tls:
+  - hosts:
+    - api-order-demobackstage1.empcbr.thoughtworks-labs.net
+    secretName: letencryptkey
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order
+spec:
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: order
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+  labels:
+    app: order
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 5
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+      - name: order
+        image: 626109959667.dkr.ecr.us-east-1.amazonaws.com/order:{image-tag}
+        ports:
+        - containerPort: 3000

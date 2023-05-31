@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "order"
+  description: "This website handles orders across all types."
+  links:
+    - url: https://api-order-demobackstage1.empcbr.thoughtworks-labs.net/api
+      title: order
+      icon: dashboard
+  annotations:
+    circleci.com/project-slug: github/platform-dx/order-4c56331
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug:  platform-dx/order-4c56331
+    sonarqube.org/project-key: "order"
+    backstage.io/kubernetes-label-selector: "app=order"
+    backstage.io/adr-location: docs/adrs/
+spec:
+  type: service
+  lifecycle: experimental
+  owner: "guest"
+  providesApis:
+    - "order"

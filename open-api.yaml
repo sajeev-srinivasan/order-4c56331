@@ -1,0 +1,112 @@
+openapi: 3.0.0
+paths:
+  /cats:
+    post:
+      operationId: CatsController_create
+      summary: Create cat
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCatDto'
+      responses:
+        '200':
+          description: The created record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+        '403':
+          description: Forbidden.
+      tags: &ref_0
+        - cats
+      security: &ref_1
+        - bearer: []
+    get:
+      operationId: CatsController_getAll
+      parameters: []
+      responses:
+        '200':
+          description: The list of all Cats
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cat'
+      tags: *ref_0
+      security: *ref_1
+  /cats/{id}:
+    get:
+      operationId: CatsController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The found record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cat'
+        '404':
+          description: Not Found
+      tags: *ref_0
+      security: *ref_1
+info:
+  title: "order"
+  description: "This website handles orders across all types."
+  version: '1.0'
+  contact: {}
+tags: []
+servers:
+  - url: https://api-order-demobackstage1.empcbr.thoughtworks-labs.net
+components:
+  schemas:
+    CreateCatDto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Jerry
+          description: The name of the Cat
+        age:
+          type: number
+          example: 1
+          description: The age of the Cat
+        breed:
+          type: string
+          example: persian
+          description: The breed of the Cat
+      required:
+        - name
+        - age
+        - breed
+    Cat:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The Cat identifier
+        name:
+          type: string
+          example: Bob
+          description: The Cat name
+        age:
+          type: number
+          example: 1
+          description: The age of the Cat
+        breed:
+          type: string
+          example: Maine Coon
+          description: The breed of the Cat
+      required:
+        - id
+        - name
+        - age
+        - breed
