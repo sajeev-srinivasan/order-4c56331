@@ -79,14 +79,14 @@ components:
           type: number
           example: 1
           description: The age of the Order
-        breed:
+        status:
           type: string
           example: persian
-          description: The breed of the Order
+          description: The status of the Order
       required:
         - name
         - age
-        - breed
+        - status
     Order:
       type: object
       properties:
@@ -101,7 +101,7 @@ components:
           type: number
           example: 1
           description: The age of the Order
-        breed:
+        status:
           type: string
           example: Maine Coon
           description: The status of the Order
@@ -109,4 +109,4 @@ components:
         - id
         - name
         - age
-        - breed
+        - status
