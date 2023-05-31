@@ -27,6 +27,7 @@ spec:
     - "customer"
   dependsOn: 
     - "resource:orders-db"  
+    - "component:retailer"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
