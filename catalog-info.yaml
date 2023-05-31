@@ -27,6 +27,7 @@ spec:
     - "customer"
   dependsOn: 
     - "resource:orders-db"  
+    - "resource:core-db" 
     - "component:retailer"
 ---
 apiVersion: backstage.io/v1alpha1
@@ -62,6 +63,16 @@ spec:
   type: database
   owner: order-team
   system: order
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: core-db
+  description: Stores core details
+spec:
+  type: database
+  owner: order-team
+  system: order  
   
 
   
