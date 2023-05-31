@@ -16,7 +16,7 @@ metadata:
     backstage.io/adr-location: docs/adrs/
 spec:
   type: service
-  lifecycle: experimental
+  lifecycle: production
   owner: "order-team"
   providesApis:
     - "order"
