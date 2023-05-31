@@ -22,6 +22,7 @@ spec:
     - "order"
     - "price"
   system: "order"
+  subcomponentOf: "shipping"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
