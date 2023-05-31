@@ -1,46 +1,46 @@
 openapi: 3.0.0
 paths:
-  /cats:
+  /orders:
     post:
-      operationId: CatsController_create
-      summary: Create cat
+      operationId: OrdersController_create
+      summary: Create orders
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateCatDto'
+              $ref: '#/components/schemas/CreateOrderDto'
       responses:
         '200':
           description: The created record
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cat'
+                $ref: '#/components/schemas/Order'
         '403':
           description: Forbidden.
       tags: &ref_0
-        - cats
+        - orders
       security: &ref_1
         - bearer: []
     get:
-      operationId: CatsController_getAll
+      operationId: OrdersController_getAll
       parameters: []
       responses:
         '200':
-          description: The list of all Cats
+          description: The list of all Orders
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Cat'
+                  $ref: '#/components/schemas/Order'
       tags: *ref_0
       security: *ref_1
-  /cats/{id}:
+  /orders/{id}:
     get:
-      operationId: CatsController_findOne
+      operationId: OrdersController_findOne
       parameters:
         - name: id
           required: true
@@ -53,7 +53,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Cat'
+                $ref: '#/components/schemas/Order'
         '404':
           description: Not Found
       tags: *ref_0
@@ -68,43 +68,43 @@ servers:
   - url: https://api-order-demobackstage1.empcbr.thoughtworks-labs.net
 components:
   schemas:
-    CreateCatDto:
+    CreateOrderDto:
       type: object
       properties:
         name:
           type: string
           example: Jerry
-          description: The name of the Cat
+          description: The name of the Order
         age:
           type: number
           example: 1
-          description: The age of the Cat
+          description: The age of the Order
         breed:
           type: string
           example: persian
-          description: The breed of the Cat
+          description: The breed of the Order
       required:
         - name
         - age
         - breed
-    Cat:
+    Order:
       type: object
       properties:
         id:
           type: string
-          description: The Cat identifier
+          description: The Order identifier
         name:
           type: string
           example: Bob
-          description: The Cat name
+          description: The Order name
         age:
           type: number
           example: 1
-          description: The age of the Cat
+          description: The age of the Order
         breed:
           type: string
           example: Maine Coon
-          description: The breed of the Cat
+          description: The status of the Order
       required:
         - id
         - name
