@@ -25,6 +25,8 @@ spec:
   subcomponentOf: "shipping"
   consumesApis: 
     - "customer"
+  dependsOn: 
+    - "orders-db"  
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
@@ -49,5 +51,16 @@ metadata:
 spec:
   type: team
   children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: orders-db
+  description: Stores order details
+spec:
+  type: database
+  owner: order-team
+  system: order
+  
 
   
