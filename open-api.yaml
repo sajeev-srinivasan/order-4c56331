@@ -59,13 +59,13 @@ paths:
       tags: *ref_0
       security: *ref_1
 info:
-  title: "order"
-  description: "This website handles orders across all types."
+  title: ${{values.component_id | dump}}
+  description: ${{values.description | dump}}
   version: '1.0'
   contact: {}
 tags: []
 servers:
-  - url: https://api-order-demobackstage1.empcbr.thoughtworks-labs.net
+  - url: ${{"https://api-" + values.component_id + "-" + values.prospect  + "." + values.domain}}
 components:
   schemas:
     CreateCatDto:

@@ -10,24 +10,30 @@ metadata:
   annotations:
     circleci.com/project-slug: github/platform-dx/order-4c56331
     backstage.io/techdocs-ref: dir:.
-    github.com/project-slug:  platform-dx/order-4c56331
+    github.com/project-slug:  anushasingh996/order-4c56331
     sonarqube.org/project-key: "order"
-    backstage.io/kubernetes-label-selector: "app=order"
+    backstage.io/kubernetes-label-selector: "app=*"
     backstage.io/adr-location: docs/adrs/
 spec:
   type: service
-  lifecycle: experimental
+  lifecycle: production
   owner: "order-team"
   providesApis:
     - "order"
     - "price"
-  system: "order"
+  system: "sales"
   subcomponentOf: "shipping"
+  consumesApis: 
+    - "customer"
+  dependsOn: 
+    - "resource:orders-db"  
+    - "resource:core-db" 
+    - "component:retailer"
 ---
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: order
+  name: sales
 spec:
   owner: order-team
   
@@ -46,6 +52,27 @@ metadata:
   name: order-team
 spec:
   type: team
-  children: []
+  children: []  
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: orders-db
+  description: Stores order details
+spec:
+  type: database
+  owner: order-team
+  system: sales
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: core-db
+  description: Stores core details
+spec:
+  type: database
+  owner: order-team
+  system: sales  
+  
 
   
