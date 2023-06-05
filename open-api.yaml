@@ -1,46 +1,46 @@
 openapi: 3.0.0
 paths:
-  /orders:
+  /cats:
     post:
-      operationId: OrdersController_create
-      summary: Create orders
+      operationId: CatsController_create
+      summary: Create cat
       parameters: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateOrderDto'
+              $ref: '#/components/schemas/CreateCatDto'
       responses:
         '200':
           description: The created record
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
+                $ref: '#/components/schemas/Cat'
         '403':
           description: Forbidden.
       tags: &ref_0
-        - orders
+        - cats
       security: &ref_1
         - bearer: []
     get:
-      operationId: OrdersController_getAll
+      operationId: CatsController_getAll
       parameters: []
       responses:
         '200':
-          description: The list of all Orders
+          description: The list of all Cats
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Order'
+                  $ref: '#/components/schemas/Cat'
       tags: *ref_0
       security: *ref_1
-  /orders/{id}:
+  /cats/{id}:
     get:
-      operationId: OrdersController_findOne
+      operationId: CatsController_findOne
       parameters:
         - name: id
           required: true
@@ -53,60 +53,60 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
+                $ref: '#/components/schemas/Cat'
         '404':
           description: Not Found
       tags: *ref_0
       security: *ref_1
 info:
-  title: "order"
-  description: "This website handles orders across all types."
+  title: ${{values.component_id | dump}}
+  description: ${{values.description | dump}}
   version: '1.0'
   contact: {}
 tags: []
 servers:
-  - url: https://api-order-demobackstage1.empcbr.thoughtworks-labs.net
+  - url: ${{"https://api-" + values.component_id + "-" + values.prospect  + "." + values.domain}}
 components:
   schemas:
-    CreateOrderDto:
+    CreateCatDto:
       type: object
       properties:
         name:
           type: string
           example: Jerry
-          description: The name of the Order
+          description: The name of the Cat
         age:
           type: number
           example: 1
-          description: The age of the Order
-        status:
+          description: The age of the Cat
+        breed:
           type: string
           example: persian
-          description: The status of the Order
+          description: The breed of the Cat
       required:
         - name
         - age
-        - status
-    Order:
+        - breed
+    Cat:
       type: object
       properties:
         id:
           type: string
-          description: The Order identifier
+          description: The Cat identifier
         name:
           type: string
           example: Bob
-          description: The Order name
+          description: The Cat name
         age:
           type: number
           example: 1
-          description: The age of the Order
-        status:
+          description: The age of the Cat
+        breed:
           type: string
           example: Maine Coon
-          description: The status of the Order
+          description: The breed of the Cat
       required:
         - id
         - name
         - age
-        - status
+        - breed
