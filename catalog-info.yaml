@@ -10,7 +10,7 @@ metadata:
   annotations:
     circleci.com/project-slug: github/platform-dx/order-4c56331
     backstage.io/techdocs-ref: dir:.
-    github.com/project-slug:  platform-dx/order-4c56331
+    github.com/project-slug:  anushasingh996/order-4c56331
     sonarqube.org/project-key: "order"
     backstage.io/kubernetes-label-selector: "app=*"
     backstage.io/adr-location: docs/adrs/
